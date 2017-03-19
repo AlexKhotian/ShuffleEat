@@ -10,11 +10,14 @@ const (
 
 // Ingredient is food type (eg. tomato)
 type Ingredient struct {
-	name            string
-	quantity        uint64
-	measurementType MeasurementMetric
+	TypeId          uint64            `bson:"_id" json:"typeId"`
+	Name            string            `bson:"_name" json:"name"`
+	Quantity        uint64            `bson:"_quantity" json:"quantity"`
+	MeasurementType MeasurementMetric `bson:"_measurementType" json:"measurementType"`
 }
 
 type Recipe struct {
-	recipeId uint64
+	RecipeId    uint64       `bson:"_id" json:"RecipeId"`
+	Ingredients []Ingredient `bson:"_ingredients" json:"_ingredients"`
+	Description []string     `bson:"_description" json:"_description"`
 }
