@@ -10,7 +10,7 @@ type IServerRoutine interface {
 // ServerRoutineImpl implementation for ServerRoutine interface
 // contains handler
 type ServerRoutineImpl struct {
-	httpHandlerUtil HTTPHandlerUtil
+	httpHandlerUtil *HTTPHandlerUtil
 }
 
 // ServerRoutineFactory creats intance of ServerRoutine

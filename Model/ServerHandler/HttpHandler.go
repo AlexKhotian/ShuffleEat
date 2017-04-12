@@ -7,22 +7,21 @@ import (
 	"strings"
 )
 
-// HTTPHandlerUtil handles http requsets
-type HTTPHandlerUtil interface {
-	ServeHTTP(w http.ResponseWriter, r *http.Request)
-}
-
-// HTTPHandlerUtilImpl implement interface
-type HTTPHandlerUtilImpl struct {
+// HTTPHandlerUtil implement interface
+type HTTPHandlerUtil struct {
 }
 
 // HTTPHandlerFactory creates a interface for HTTPHandlerUtil
-func HTTPHandlerFactory() HTTPHandlerUtil {
-	thisHandler := new(HTTPHandlerUtilImpl)
+func HTTPHandlerFactory() *HTTPHandlerUtil {
+	thisHandler := new(HTTPHandlerUtil)
 	return thisHandler
 }
 
-func (handler *HTTPHandlerUtilImpl) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (handler *HTTPHandlerUtil) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" {
+		r.ParseForm()
+		log.Println(r.Form)
+	}
 	path := r.URL.Path
 	if path == "" {
 		path = "/mainView.html"
@@ -40,7 +39,7 @@ func (handler *HTTPHandlerUtilImpl) ServeHTTP(w http.ResponseWriter, r *http.Req
 	}
 }
 
-func (handler *HTTPHandlerUtilImpl) parseRequest(path *string) (string, string) {
+func (handler *HTTPHandlerUtil) parseRequest(path *string) (string, string) {
 	var contentType string
 	modifiedSourcePath := "../../Webview" + *(path)
 	if strings.HasSuffix(*path, ".html") {
@@ -49,7 +48,6 @@ func (handler *HTTPHandlerUtilImpl) parseRequest(path *string) (string, string) 
 		contentType = "text/css"
 	} else if strings.HasSuffix(*path, ".js") {
 		contentType = "application/javascript"
-		modifiedSourcePath = "ViewScripts" + *(path)
 	} else if strings.HasSuffix(*path, ".png") {
 		contentType = "image/png"
 	} else {
