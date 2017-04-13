@@ -23,8 +23,8 @@ func (handler *HTTPHandlerUtil) ServeHTTP(w http.ResponseWriter, r *http.Request
 		log.Println(r.Form)
 	}
 	path := r.URL.Path
-	if path == "" {
-		path = "/mainView.html"
+	if path == "/" {
+		path = "/StartPage.html"
 	}
 
 	modifiedPath, contentType := handler.parseRequest(&path)

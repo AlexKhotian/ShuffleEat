@@ -1,0 +1,22 @@
+html{
+  font-family: "PT Sans", sans-serif;
+  font-size: 20px;
+}
+
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 18rem;
+  text-align: left;
+  background: #4fb594;
+}
+
+.sidebar-nav-item{
+  display: block;
+  line-height: 1.75;
+}
+
+.SP_body{
+}
