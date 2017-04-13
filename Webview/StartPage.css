@@ -11,11 +11,26 @@ html{
   width: 18rem;
   text-align: left;
   background: #4fb594;
+  padding: 2rem, 1rem;
+}
+
+.sidebar a{
+  color: #fff;
 }
 
 .sidebar-nav-item{
   display: block;
   line-height: 1.75;
+}
+
+.content{
+  max-width: 38rem;
+  margin-left: 22rem;
+  margin-right: 4rem;
+}
+
+a{
+  text-decoration: none;
 }
 
 .SP_body{
