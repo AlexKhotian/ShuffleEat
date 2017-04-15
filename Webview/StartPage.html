@@ -4,6 +4,7 @@
       <meta charset="UTF-8">
       <title>ShuffleEat</title>
       <link type="text/css" rel="stylesheet" href="StartPage.css">
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   </head>
   <body class="SP_body">
     <div class="sidebar">
@@ -18,17 +19,27 @@
             Shuffle meal
           </li>
           <li class="sidebar-nav-item">
-            <a href="mainView.html">Search for ingredients</a>
+          <p onclick="ChooseIngredient()">
+            Search for ingredients
+          </p>
           </li>
           <li class="sidebar-nav-item">
             Pick a categorie
+          </li>
+          <li class="sidebar-nav-item">
+            Add your recepie
           </li>
         </ul>
       </div>
     </div>
     <br>
-    <div class="content">
+    <div class="content" id="content">
       Make Food Greate Again!
     </div>
+    <script type="text/javascript">
+      function ChooseIngredient() {
+          $("#content").load("ChooseIngredient.html");
+      }
+    </script>
   </body>
 </html>

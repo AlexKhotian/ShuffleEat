@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login Page</title>
+        <link type="text/css" rel="stylesheet" href="ChooseIngredient.css">
+    </head>
+    <body>
+        <div class="ingArea" id="ingArea">
+          <div id="EditsArea">
+          Ingredient:<input type="text" class="ingEdit" name="ingEdit" id = "ingEdit"><br>
+        </div>
+          <input type="submit" class="submit" value="Add" onclick="AddIngredient()">
+          <br>
+        <form class = "ingField" action="/m" method="post">
+            <input type="submit" class="submit" value="Search for meal">
+        </form>
+        </div>
+    <script type="text/javascript">
+      function AddIngredient() {
+        var label = document.createElement('label');
+        var t = document.createTextNode("Ingredient:");
+        label.setAttribute("for", "Ingredient:");
+        label.appendChild(t);
+        var input = document.createElement('input');
+        input.type = "text";
+        input.setAttribute("name", "Ingredient")
+        var br = document.createElement("br");
+        var container = document.getElementById("EditsArea");
+        container.appendChild(label);
+        container.appendChild(input);
+        container.appendChild(br);
+      }
+    </script>
+    </body>
+</html>
