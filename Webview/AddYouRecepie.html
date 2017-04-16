@@ -6,6 +6,39 @@
     <link type="text/css" rel="stylesheet" href="AddYouRecepie.css">
   </head>
   <body>
-    
+    Recepie Title:<input type="text" class="recepieTitle" name="recepieTitle" id ="recepieTitle"><br>
+    <div id="EditsArea">
+    Ingredient:<input type="text" class="ingEdit" name="ingEdit" id = "ingEdit">
+    <input type="submit" class="add" value="Add+" onclick="AddIngredient()">
+    </div>
+    Recepie Categorie:<input type="text" class="categorie" name="categorie" id ="categorie"><br>
+    Recepie Description:<input type="text" class="description" name="description" id ="description"><br>
+    <input type="submit" class="submit" value="Commit Recepie" onclick="CommitRecepie()">
+    <script type="text/javascript">
+      function AddIngredient() {
+        var label = document.createElement('label');
+        var t = document.createTextNode("Ingredient:");
+        label.setAttribute("for", "Ingredient:");
+        label.appendChild(t);
+        var input = document.createElement('input');
+        input.type = "text";
+        input.setAttribute("name", "Ingredient")
+        var br = document.createElement("br");
+        var container = document.getElementById("EditsArea");
+        container.appendChild(br);
+        container.appendChild(label);
+        container.appendChild(input);
+      }
+
+      function CommitRecepie() {
+        var form = $(document.myform);
+        var data = JSON.stringify(form.serializeArray());
+        var url = "url";
+        xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send(data);
+      }
+    </script>
   </body>
 </html>

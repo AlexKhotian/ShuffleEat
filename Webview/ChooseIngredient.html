@@ -8,10 +8,9 @@
     <body>
         <div class="ingArea" id="ingArea">
           <div id="EditsArea">
-          Ingredient:<input type="text" class="ingEdit" name="ingEdit" id = "ingEdit"><br>
-        </div>
-          <input type="submit" class="submit" value="Add" onclick="AddIngredient()">
-          <br>
+          Ingredient:<input type="text" class="ingEdit" name="ingEdit" id = "ingEdit">
+          </div>
+          <input type="submit" class="submit" value="Add+" onclick="AddIngredient()">
         <form class = "ingField" action="/m" method="post">
             <input type="submit" class="submit" value="Search for meal">
         </form>
@@ -27,9 +26,9 @@
         input.setAttribute("name", "Ingredient")
         var br = document.createElement("br");
         var container = document.getElementById("EditsArea");
+        container.appendChild(br);
         container.appendChild(label);
         container.appendChild(input);
-        container.appendChild(br);
       }
     </script>
     </body>

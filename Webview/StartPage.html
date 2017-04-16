@@ -27,7 +27,7 @@
             Pick a categorie
           </li>
           <li class="sidebar-nav-item">
-            Add your recepie
+            <p onclick="AddRecepie()">Add your recepie</p>
           </li>
         </ul>
       </div>
@@ -39,6 +39,9 @@
     <script type="text/javascript">
       function ChooseIngredient() {
           $("#content").load("ChooseIngredient.html");
+      }
+      function AddRecepie() {
+          $("#content").load("AddYouRecepie.html");
       }
     </script>
   </body>

@@ -19,8 +19,9 @@ func HTTPHandlerFactory() *HTTPHandlerUtil {
 
 func (handler *HTTPHandlerUtil) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		r.ParseForm()
-		log.Println(r.Form)
+		if r.Header.Get("Content-Type") == "application/json" {
+			return
+		}
 	}
 	path := r.URL.Path
 	if path == "/" {
