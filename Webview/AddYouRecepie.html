@@ -8,7 +8,7 @@
   <body>
     Recepie Title:<input type="text" class="recepieTitle" name="recepieTitle" id ="recepieTitle"><br>
     <div id="EditsArea">
-    Ingredient:<input type="text" class="ingEdit" name="ingEdit" id = "ingEdit">
+    Ingredient:<input type="text" class="ingEdit" name="Ingredient" id = "ingEdit">
     <input type="submit" class="add" value="Add+" onclick="AddIngredient()">
     </div>
     Recepie Categorie:<input type="text" class="categorie" name="categorie" id ="categorie"><br>
@@ -32,8 +32,27 @@
 
       function CommitRecepie() {
         var form = $(document.myform);
-        var data = form.serializeArray();
-        //var data = JSON.stringify(form.serializeArray());
+        var elements = document.getElementsByTagName('input');
+        var recepieTitle;
+        var ingredients = "";
+        var description;
+        var categorie;
+        console.log(elements.length);
+        for (var i=0; i<elements.length; i++){
+          var name = elements[i].getAttribute("name");
+          if (name == "recepieTitle"){
+            recepieTitle = elements[i].value;
+          } else if (name == "Ingredient") {
+            ingredients += elements[i].value + ",";
+          } else if (name == "categorie") {
+            categorie = elements[i].value;
+          } else if (name == "description") {
+            description = elements[i].value;
+          }
+        }
+        var data = JSON.stringify({"_title":recepieTitle,
+         "_ingredients":ingredients, "_description":description, "_categorie":categorie});
+        console.log(data);
         var url = "url";
         xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);

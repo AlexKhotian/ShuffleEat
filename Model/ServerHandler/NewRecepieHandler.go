@@ -7,6 +7,14 @@ import (
 	"log"
 )
 
+// RecipeForm contains in about recipe from html form
+type RecipeForm struct {
+	RecipeTitle string `json:"_title"`
+	Ingredients string `json:"_ingredients"`
+	Description string `json:"_description"`
+	Categorie   string `json:"_categorie"`
+}
+
 const dbName = "Recepies"
 
 // NewRecepieHandler handle new recepie
@@ -23,18 +31,14 @@ func FactoryNewRecepieHandler() *NewRecepieHandler {
 	return this
 }
 
-type test_struct struct {
-	Test string
-}
-
 // ProceedData unmarshal json and add new recepie
 func (handler *NewRecepieHandler) ProceedData(data io.ReadCloser) {
 	decoder := json.NewDecoder(data)
-	var t test_struct
-	err := decoder.Decode(&t)
+	var recipe RecipeForm
+	err := decoder.Decode(&recipe)
 	if err != nil {
 		panic(err)
 	}
 	defer data.Close()
-	log.Println(t.Test)
+	log.Println(recipe)
 }
