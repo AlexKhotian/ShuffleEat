@@ -32,7 +32,8 @@
 
       function CommitRecepie() {
         var form = $(document.myform);
-        var data = JSON.stringify(form.serializeArray());
+        var data = form.serializeArray();
+        //var data = JSON.stringify(form.serializeArray());
         var url = "url";
         xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);

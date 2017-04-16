@@ -9,17 +9,21 @@ import (
 
 // HTTPHandlerUtil implement interface
 type HTTPHandlerUtil struct {
+	newRecepieHandler *NewRecepieHandler
 }
 
 // HTTPHandlerFactory creates a interface for HTTPHandlerUtil
 func HTTPHandlerFactory() *HTTPHandlerUtil {
 	thisHandler := new(HTTPHandlerUtil)
+	thisHandler.newRecepieHandler = FactoryNewRecepieHandler()
 	return thisHandler
 }
 
 func (handler *HTTPHandlerUtil) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		if r.Header.Get("Content-Type") == "application/json" {
+			println(r.Body)
+			//handler.newRecepieHandler.ProceedData(r.Body)
 			return
 		}
 	}
