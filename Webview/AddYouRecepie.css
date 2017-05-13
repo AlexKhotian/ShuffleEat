@@ -26,3 +26,24 @@ html{
   background-color: #99e6ff;
   color: white;
 }
+
+.categorieSelect{
+  margin-left: 5px;
+  margin-bottom: 10px;
+  border: 3px solid #99e6ff;
+  width: 150px;
+  height: 34px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: white;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;       /* remove default arrow */
+  text-align:justify;
+}
+
+.categorieSelect:hover{
+  background-color: #99e6ff;
+  color: white;
+}

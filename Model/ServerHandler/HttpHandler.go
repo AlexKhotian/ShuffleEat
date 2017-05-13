@@ -52,6 +52,7 @@ func (handler *HTTPHandlerUtil) parseRequest(path *string) (string, string) {
 	} else if strings.HasSuffix(*path, ".css") {
 		contentType = "text/css"
 	} else if strings.HasSuffix(*path, ".js") {
+		modifiedSourcePath = "../../ViewModel" + *(path)
 		contentType = "application/javascript"
 	} else if strings.HasSuffix(*path, ".png") {
 		contentType = "image/png"

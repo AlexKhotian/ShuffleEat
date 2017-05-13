@@ -11,8 +11,9 @@ import (
 type RecipeForm struct {
 	RecipeTitle string `json:"_title"`
 	Ingredients string `json:"_ingredients"`
+	Quantities  string `json:"_quantities"`
 	Description string `json:"_description"`
-	Categorie   string `json:"_categorie"`
+	Categorie   uint16 `json:"_categorie"`
 }
 
 const dbName = "Recepies"
@@ -26,7 +27,7 @@ type NewRecepieHandler struct {
 func FactoryNewRecepieHandler() *NewRecepieHandler {
 	this := new(NewRecepieHandler)
 	dbConnector := new(DataBase.Connector)
-	dbConnector.InitDatabase(dbName)
+	//dbConnector.InitDatabase(dbName)
 	this.dbConnector = dbConnector
 	return this
 }
@@ -34,11 +35,22 @@ func FactoryNewRecepieHandler() *NewRecepieHandler {
 // ProceedData unmarshal json and add new recepie
 func (handler *NewRecepieHandler) ProceedData(data io.ReadCloser) {
 	decoder := json.NewDecoder(data)
-	var recipe RecipeForm
-	err := decoder.Decode(&recipe)
+	var recipeForm RecipeForm
+	err := decoder.Decode(&recipeForm)
 	if err != nil {
 		panic(err)
 	}
-	defer data.Close()
-	log.Println(recipe)
+	data.Close()
+	log.Println(recipeForm)
+}
+
+func convertPostRequestToDatabaseFormat(requestData *RecipeForm) *DataBase.Recipe {
+	var recipe DataBase.Recipe
+	//	recipe.
+
+	return &recipe
+}
+
+func parseIngredients(ingredientString *string) *[]DataBase.Ingredient {
+	return nil
 }

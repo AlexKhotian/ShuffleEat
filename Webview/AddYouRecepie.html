@@ -4,60 +4,31 @@
     <meta charset="UTF-8">
     <title>Add your recepie</title>
     <link type="text/css" rel="stylesheet" href="AddYouRecepie.css">
+    <script type="text/javascript" src="AddYourRecepieViewModel.js"></script>
   </head>
   <body>
     Recepie Title:<input type="text" class="recepieTitle" name="recepieTitle" id ="recepieTitle"><br>
     <div id="EditsArea">
     Ingredient:<input type="text" class="ingEdit" name="Ingredient" id = "ingEdit">
-    <input type="submit" class="add" value="Add+" onclick="AddIngredient()">
+    Quantity:<input type="text" class="quaEdit" name="Quantity" id = "quaEdit">
+    <input type="submit" class="add" value="Add+" onclick="onAddIngredient()">
     </div>
-    Recepie Categorie:<input type="text" class="categorie" name="categorie" id ="categorie"><br>
+    Recepie Categorie:<select id="categorieSelect" name="categorieSelect" class="categorieSelect">
+      <option value="0">Low Kall</option>
+      <option value="1">Breakfast</option>
+      <option value="2">Lunch</option>
+      <option value="3">Dinner</option>
+      <option value="4">Salat</option>
+      <option value="5">Meat</option>
+    </select><br>
     Recepie Description:<input type="text" class="description" name="description" id ="description"><br>
-    <input type="submit" class="submit" value="Commit Recepie" onclick="CommitRecepie()">
+    <input type="submit" class="submit" value="Commit Recepie" onclick="onCommitRecepie()">
     <script type="text/javascript">
-      function AddIngredient() {
-        var label = document.createElement('label');
-        var t = document.createTextNode("Ingredient:");
-        label.setAttribute("for", "Ingredient:");
-        label.appendChild(t);
-        var input = document.createElement('input');
-        input.type = "text";
-        input.setAttribute("name", "Ingredient")
-        var br = document.createElement("br");
-        var container = document.getElementById("EditsArea");
-        container.appendChild(br);
-        container.appendChild(label);
-        container.appendChild(input);
+      function onCommitRecepie(){
+        CommitRecepie();
       }
-
-      function CommitRecepie() {
-        var form = $(document.myform);
-        var elements = document.getElementsByTagName('input');
-        var recepieTitle;
-        var ingredients = "";
-        var description;
-        var categorie;
-        console.log(elements.length);
-        for (var i=0; i<elements.length; i++){
-          var name = elements[i].getAttribute("name");
-          if (name == "recepieTitle"){
-            recepieTitle = elements[i].value;
-          } else if (name == "Ingredient") {
-            ingredients += elements[i].value + ",";
-          } else if (name == "categorie") {
-            categorie = elements[i].value;
-          } else if (name == "description") {
-            description = elements[i].value;
-          }
-        }
-        var data = JSON.stringify({"_title":recepieTitle,
-         "_ingredients":ingredients, "_description":description, "_categorie":categorie});
-        console.log(data);
-        var url = "url";
-        xhr = new XMLHttpRequest();
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-type", "application/json");
-        xhr.send(data);
+      function onAddIngredient(){
+        AddIngredient();
       }
     </script>
   </body>
