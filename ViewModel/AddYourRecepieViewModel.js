@@ -36,8 +36,8 @@ function CommitRecepie() {
   var form = $(document.myform);
   var elements = document.getElementsByTagName('input');
   var recepieTitle;
-  var ingredients = "";
-  var quantities = "";
+  var ingredients = [];
+  var quantities = [];
   var description;
   var categorie;
   console.log(elements.length);
@@ -46,9 +46,9 @@ function CommitRecepie() {
     if (name == "recepieTitle"){
       recepieTitle = elements[i].value;
     } else if (name == "Ingredient") {
-      ingredients += elements[i].value + ",";
+      ingredients.push(elements[i].value);
     } else if (name == "Quantity") {
-      quantities += elements[i].value + ",";
+      quantities.push(elements[i].value);
     } else if (name == "description") {
       description = elements[i].value;
     }

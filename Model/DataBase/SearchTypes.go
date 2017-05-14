@@ -32,8 +32,10 @@ type Ingredient struct {
 
 // Recipe contains in about recipe
 type Recipe struct {
-	RecipeID      uint64       `bson:"_id" json:"_recipeID"`
-	Ingredients   []Ingredient `bson:"_ingredients" json:"_ingredients"`
-	Description   []string     `bson:"_description" json:"_description"`
-	CategorieType Categorie    `bson:"_categorieType" json:"categorieType"`
+	RecipeID      uint64    `bson:"_id" json:"_recipeID"`
+	RecipeTitle   string    `bson:"_recipeTitle" json:"_recipeTitle"`
+	Ingredients   []string  `bson:"_ingredients" json:"_ingredients"`
+	Quantities    []string  `bson:"_quantities" json:"_quantities"`
+	Description   string    `bson:"_description" json:"_description"`
+	CategorieType Categorie `bson:"_categorieType" json:"categorieType"`
 }

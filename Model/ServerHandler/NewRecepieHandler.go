@@ -4,19 +4,19 @@ import (
 	"ShuffleEat/Model/DataBase"
 	"encoding/json"
 	"io"
-	"log"
 )
 
 // RecipeForm contains in about recipe from html form
 type RecipeForm struct {
-	RecipeTitle string `json:"_title"`
-	Ingredients string `json:"_ingredients"`
-	Quantities  string `json:"_quantities"`
-	Description string `json:"_description"`
-	Categorie   uint16 `json:"_categorie"`
+	RecipeTitle string   `json:"_title"`
+	Ingredients []string `json:"_ingredients"`
+	Quantities  []string `json:"_quantities"`
+	Description string   `json:"_description"`
+	Categorie   uint16   `json:"_categorie"`
 }
 
-const dbName = "Recepies"
+const dbName = "Recipes"
+const dbCollection = "RecipeCollection"
 
 // NewRecepieHandler handle new recepie
 type NewRecepieHandler struct {
@@ -41,16 +41,17 @@ func (handler *NewRecepieHandler) ProceedData(data io.ReadCloser) {
 		panic(err)
 	}
 	data.Close()
-	log.Println(recipeForm)
+
+	databaseRecipe := convertPostRequestToDatabaseFormat(&recipeForm)
+	handler.dbConnector.AddItems(dbCollection, databaseRecipe)
 }
 
 func convertPostRequestToDatabaseFormat(requestData *RecipeForm) *DataBase.Recipe {
 	var recipe DataBase.Recipe
-	//	recipe.
-
+	recipe.Description = requestData.Description
+	recipe.Ingredients = requestData.Ingredients
+	recipe.Quantities = requestData.Quantities
+	recipe.CategorieType = DataBase.Categorie(requestData.Categorie)
+	recipe.RecipeTitle = requestData.RecipeTitle
 	return &recipe
-}
-
-func parseIngredients(ingredientString *string) *[]DataBase.Ingredient {
-	return nil
 }

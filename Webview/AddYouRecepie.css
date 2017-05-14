@@ -40,7 +40,6 @@ html{
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;       /* remove default arrow */
-  text-align:justify;
 }
 
 .categorieSelect:hover{
