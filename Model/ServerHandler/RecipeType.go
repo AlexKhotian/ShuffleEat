@@ -9,5 +9,5 @@ type RecipeForm struct {
 	Categorie   uint16   `json:"_categorie"`
 }
 
-const dbName = "Recipes"
-const dbCollection = "RecipeCollection"
+const dbName = "Recipes_v2_test"
+const dbCollection = "RecipesCollection_v2_test"

@@ -41,9 +41,11 @@ func (conn *Connector) Shutdown() {
 // AddItems to selected collection
 func (conn *Connector) AddItems(collection string, items ...interface{}) {
 	c := conn.dbSession.DB(*conn.database).C(collection)
-	err := c.Insert(&items)
-	if err != nil {
-		log.Println(err)
+	for _, val := range items {
+		err := c.Insert(val)
+		if err != nil {
+			log.Println(err)
+		}
 	}
 }
 
