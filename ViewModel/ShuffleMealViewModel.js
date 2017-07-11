@@ -1,4 +1,4 @@
-window.onload = function {
+function LoadRecipe() {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
@@ -48,3 +48,4 @@ window.onload = function {
   xmlHttp.open("GET", randomMealUrl, true); // true for asynchronous
   xmlHttp.send(null);
 }
+$(document).ready(LoadRecipe)

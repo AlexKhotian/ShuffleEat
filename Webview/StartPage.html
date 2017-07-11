@@ -16,12 +16,10 @@
         </div>
         <ul class="sidebar-nav">
           <li class="sidebar-nav-item">
-            Shuffle meal
+            <p onclick="ShuffleMeal()"> Shuffle meal</p>
           </li>
           <li class="sidebar-nav-item">
-          <p onclick="ChooseIngredient()">
-            Search for ingredients
-          </p>
+            <p onclick="ChooseIngredient()">Search for ingredients</p>
           </li>
           <li class="sidebar-nav-item">
             Pick a categorie
@@ -42,6 +40,9 @@
       }
       function AddRecepie() {
           $("#content").load("AddYouRecepie.html");
+      }
+      function ShuffleMeal() {
+          $("#content").load("ShuffleMeal.html");
       }
     </script>
   </body>

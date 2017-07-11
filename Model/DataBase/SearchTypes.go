@@ -32,7 +32,7 @@ type Ingredient struct {
 
 // Recipe contains in about recipe
 type Recipe struct {
-	RecipeID      uint64    `bson:"_id" json:"_recipeID"`
+	ID            uint64    `bson:"id" json:"id"`
 	RecipeTitle   string    `bson:"_recipeTitle" json:"_recipeTitle"`
 	Ingredients   []string  `bson:"_ingredients" json:"_ingredients"`
 	Quantities    []string  `bson:"_quantities" json:"_quantities"`

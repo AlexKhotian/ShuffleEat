@@ -30,12 +30,14 @@ func (handler *NewRecepieHandler) ProceedData(data io.ReadCloser) {
 	}
 	data.Close()
 
-	databaseRecipe := convertPostRequestToDatabaseFormat(&recipeForm)
+	databaseRecipe := convertPostRequestToDatabaseFormat(
+		&recipeForm, handler.dbConnector.GetCollectionSize(dbCollection))
 	handler.dbConnector.AddItems(dbCollection, databaseRecipe)
 }
 
-func convertPostRequestToDatabaseFormat(requestData *RecipeForm) *DataBase.Recipe {
+func convertPostRequestToDatabaseFormat(requestData *RecipeForm, ID uint64) *DataBase.Recipe {
 	var recipe DataBase.Recipe
+	recipe.ID = ID
 	recipe.Description = requestData.Description
 	recipe.Ingredients = requestData.Ingredients
 	recipe.Quantities = requestData.Quantities

@@ -14,6 +14,7 @@ type IConnector interface {
 	ModifyItems(collection string, selector interface{}, items ...interface{})
 	FindItems(collection string, query interface{}) []interface{}
 	Shutdown()
+	GetCollectionSize(collection string) uint64
 }
 
 // Connector connects to database
@@ -78,4 +79,14 @@ func (conn *Connector) FindItems(collection string, query interface{}) []interfa
 		log.Println(err)
 	}
 	return result
+}
+
+// GetCollectionSize returns size of the collection
+func (conn *Connector) GetCollectionSize(collection string) uint64 {
+	c := conn.dbSession.DB(*conn.database).C(collection)
+	res, err := c.Count()
+	if err != nil {
+		log.Println(err)
+	}
+	return uint64(res)
 }
