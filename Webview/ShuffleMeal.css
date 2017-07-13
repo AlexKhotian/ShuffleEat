@@ -7,7 +7,7 @@ html{
   line-height: 1.75;
 }
 
-.description{
+#description{
   height: 5rem;
   width: 20rem;
 }

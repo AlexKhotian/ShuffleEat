@@ -33,24 +33,24 @@ func (handler *RandomMealHandler) GenerateRandomMeal(w http.ResponseWriter) {
 	log.Println("R_Id:", pseudoRandomID)
 	interfaceVars := handler.dbConnector.FindItems(dbCollection, bson.M{"id": pseudoRandomID})
 	var response []byte
-	for _, value := range interfaceVars {
+	for _, result := range interfaceVars {
 		log.Println("Found empty interface")
-		result, isRightType := value.(DataBase.Recipe)
-		if isRightType {
-			responseRecipe := &RecipeForm{}
-			log.Println("Found:", responseRecipe.RecipeTitle)
-			responseRecipe.Description = result.Description
-			responseRecipe.Categorie = uint16(result.CategorieType)
-			responseRecipe.Ingredients = result.Ingredients
-			responseRecipe.Quantities = result.Quantities
-			responseRecipe.RecipeTitle = result.RecipeTitle
-			jsonBytes, err := json.Marshal(responseRecipe)
-			if err != nil {
-				log.Println(err)
-				continue
-			}
-			response = append(response, jsonBytes...)
+		//result, isRightType := value.(DataBase.Recipe)
+		//if !isRightType {
+		responseRecipe := &RecipeForm{}
+		log.Println("Found:", result.RecipeTitle)
+		responseRecipe.Description = result.Description
+		responseRecipe.Categorie = uint16(result.CategorieType)
+		responseRecipe.Ingredients = result.Ingredients
+		responseRecipe.Quantities = result.Quantities
+		responseRecipe.RecipeTitle = result.RecipeTitle
+		jsonBytes, err := json.Marshal(responseRecipe)
+		if err != nil {
+			log.Println(err)
+			continue
 		}
+		response = append(response, jsonBytes...)
+		//}
 	}
 	if len(response) != 0 {
 		w.Write(response)

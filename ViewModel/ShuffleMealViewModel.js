@@ -3,11 +3,11 @@ function LoadRecipe() {
   xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
       var parsedData = JSON.parse(xmlHttp.responseText);
-      var desription = document.getElementsByTagName('description');
+      var desription = document.getElementById('description');
       desription.value = parsedData._description;
-      var categorie = document.getElementsByTagName('categorie');
+      var categorie = document.getElementById('categorie');
       categorie.value = parsedData._categorie
-      var recipeTitle = document.getElementsByTagName('recipeTitle');
+      var recipeTitle = document.getElementById('recipeTitle');
       recipeTitle.value = parsedData._title
       for (var i=0; i < parsedData._ingredients.length; i++) {
         var labelIng = document.createElement('label');

@@ -12,7 +12,7 @@ type IConnector interface {
 	AddItems(collection string, items ...interface{})
 	RemoveItems(collection string, selector interface{})
 	ModifyItems(collection string, selector interface{}, items ...interface{})
-	FindItems(collection string, query interface{}) []interface{}
+	FindItems(collection string, query interface{}) []Recipe
 	Shutdown()
 	GetCollectionSize(collection string) uint64
 }
@@ -71,9 +71,9 @@ func (conn *Connector) ModifyItems(collection string, selector interface{}, item
 }
 
 // FindItems in selected collection with provided query
-func (conn *Connector) FindItems(collection string, query interface{}) []interface{} {
+func (conn *Connector) FindItems(collection string, query interface{}) []Recipe {
 	c := conn.dbSession.DB(*conn.database).C(collection)
-	var result []interface{}
+	var result []Recipe
 	err := c.Find(query).All(&result)
 	if err != nil {
 		log.Println(err)
