@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Pick Categorie!</title>
+    <link type="text/css" rel="stylesheet" href="PickCategorie.css"/>
+    <script type="text/javascript" src="PickCategorieViewModel.js"></script>
+  </head>
+  <body>
+    <input style="background: url(/Images/LowKall.jpg)" type="submit"
+     class="submit" value="Low Kall" onclick="LoadLowKall()">
+    <input style="background: url(/Images/Breakfast.jpg)" type="submit"
+     class="submit" value="Breakfast" onclick="LoadBreakfast()">
+    <input style="background: url(/Images/Lunch.jpg)" type="submit"
+     class="submit" value="Lunch" onclick="LoadLunch()">
+    <input style="background: url(/Images/Dinner.jpg)" type="submit"
+     class="submit" value="Dinner" onclick="LoadDinner()">
+    <input style="background: url(/Images/Salat.jpg)" type="submit"
+     class="submit" value="Salat" onclick="LoadSalat()">
+    <input style="background: url(/Images/Meat.jpg)" type="submit"
+     class="submit" value="Meat" onclick="LoadMeat()">
+     <script type="text/javascript">
+     function LoadLowKall(){
+       LoadCategorie(0);
+     }
+
+     function LoadBreakfast(){
+       LoadCategorie(1);
+     }
+
+     function LoadLunch(){
+       LoadCategorie(2);
+     }
+
+     function LoadDinner(){
+       LoadCategorie(3);
+     }
+
+     function LoadSalat(){
+       LoadCategorie(4);
+     }
+
+     function LoadMeat(){
+       LoadCategorie(5);
+     }
+     </script>
+  </body>
+</html>

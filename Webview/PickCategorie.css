@@ -1,0 +1,29 @@
+html{
+  background: url('/Images/AddRecBckg.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  line-height: 1.75;
+}
+
+#description{
+  height: 5rem;
+  width: 20rem;
+}
+
+.submit{
+  font-size: 1rem;
+  height: 10rem;
+  width: 10rem;
+  border: solid;
+  border-color: #99e6ff;
+  background-color: white;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.submit:hover{
+  background-color: #99e6ff;
+  color: white;
+}

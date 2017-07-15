@@ -4,6 +4,7 @@ import (
 	"ShuffleEat/Model/DataBase"
 	"encoding/json"
 	"io"
+	"log"
 )
 
 // NewRecepieHandler handle new recepie
@@ -26,7 +27,7 @@ func (handler *NewRecepieHandler) ProceedData(data io.ReadCloser) {
 	var recipeForm RecipeForm
 	err := decoder.Decode(&recipeForm)
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
 	data.Close()
 

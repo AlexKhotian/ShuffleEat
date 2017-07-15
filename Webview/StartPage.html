@@ -22,7 +22,7 @@
             <p onclick="ChooseIngredient()">Search for ingredients</p>
           </li>
           <li class="sidebar-nav-item">
-            Pick a categorie
+            <p onclick="PickCategorie()">Pick a categorie</p>
           </li>
           <li class="sidebar-nav-item">
             <p onclick="AddRecepie()">Add your recepie</p>
@@ -35,6 +35,9 @@
       Make Food Greate Again!
     </div>
     <script type="text/javascript">
+      function LoadSubPage(url) {
+        $("#content").load(url);
+      }
       function ChooseIngredient() {
           $("#content").load("ChooseIngredient.html");
       }
@@ -43,6 +46,9 @@
       }
       function ShuffleMeal() {
           $("#content").load("ShuffleMeal.html");
+      }
+      function PickCategorie() {
+          $("#content").load("PickCategorie.html");
       }
     </script>
   </body>

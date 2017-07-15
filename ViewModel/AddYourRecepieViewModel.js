@@ -59,7 +59,7 @@ function CommitRecepie() {
   var data = JSON.stringify({"_title":recepieTitle,
    "_ingredients":ingredients, "_quantities":quantities, "_description":description, "_categorie":categorie});
   console.log(data);
-  var url = "url";
+  var url = "NewRecipe";
   xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json");

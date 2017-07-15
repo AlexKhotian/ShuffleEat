@@ -9,8 +9,9 @@ import (
 
 // HTTPHandlerUtil implement interface
 type HTTPHandlerUtil struct {
-	newRecepieHandler *NewRecepieHandler
-	randomMealHandler *RandomMealHandler
+	newRecepieHandler      *NewRecepieHandler
+	randomMealHandler      *RandomMealHandler
+	searchCategorieHandler *CategorieSearchHandler
 }
 
 // HTTPHandlerFactory creates a interface for HTTPHandlerUtil
@@ -18,14 +19,20 @@ func HTTPHandlerFactory() *HTTPHandlerUtil {
 	thisHandler := new(HTTPHandlerUtil)
 	thisHandler.newRecepieHandler = FactoryNewRecepieHandler()
 	thisHandler.randomMealHandler = FactoryRandomMealHandler()
+	thisHandler.searchCategorieHandler = FactoryCategorieSearchHandler()
 	return thisHandler
 }
 
 func (handler *HTTPHandlerUtil) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		if r.Header.Get("Content-Type") == "application/json" {
-			handler.newRecepieHandler.ProceedData(r.Body)
-			return
+			if r.URL.Path == "/NewRecipe" {
+				handler.newRecepieHandler.ProceedData(r.Body)
+				return
+			} else if r.URL.Path == "/PickCategorieRequest" {
+				handler.searchCategorieHandler.SearchForRecipes(r.Body, w)
+				return
+			}
 		}
 	}
 
