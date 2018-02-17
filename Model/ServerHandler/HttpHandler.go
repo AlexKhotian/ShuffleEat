@@ -1,6 +1,7 @@
 package ServerHandler
 
 import (
+	"errors"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -15,12 +16,17 @@ type HTTPHandlerUtil struct {
 }
 
 // HTTPHandlerFactory creates a interface for HTTPHandlerUtil
-func HTTPHandlerFactory() *HTTPHandlerUtil {
+func HTTPHandlerFactory() (*HTTPHandlerUtil, error) {
 	thisHandler := new(HTTPHandlerUtil)
 	thisHandler.newRecepieHandler = FactoryNewRecepieHandler()
 	thisHandler.randomMealHandler = FactoryRandomMealHandler()
 	thisHandler.searchCategorieHandler = FactoryCategorieSearchHandler()
-	return thisHandler
+	if thisHandler.newRecepieHandler == nil ||
+		thisHandler.randomMealHandler == nil ||
+		thisHandler.searchCategorieHandler == nil {
+		return nil, errors.New("Failed to init HTTP handler")
+	}
+	return thisHandler, nil
 }
 
 func (handler *HTTPHandlerUtil) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -61,13 +67,13 @@ func (handler *HTTPHandlerUtil) ServeHTTP(w http.ResponseWriter, r *http.Request
 
 func (handler *HTTPHandlerUtil) parseRequest(path *string) (string, string) {
 	var contentType string
-	modifiedSourcePath := "../../Webview" + *(path)
+	modifiedSourcePath := "templates/Webview" + *(path)
 	if strings.HasSuffix(*path, ".html") {
 		contentType = "text/html"
 	} else if strings.HasSuffix(*path, ".css") {
 		contentType = "text/css"
 	} else if strings.HasSuffix(*path, ".js") {
-		modifiedSourcePath = "../../ViewModel" + *(path)
+		modifiedSourcePath = "templates/ViewModel" + *(path)
 		contentType = "application/javascript"
 	} else if strings.HasSuffix(*path, ".png") {
 		contentType = "image/png"

@@ -8,7 +8,7 @@ import (
 
 // IConnector interface to database
 type IConnector interface {
-	InitDatabase()
+	InitDatabase() error
 	AddItems(collection string, items ...interface{})
 	RemoveItems(collection string, selector interface{})
 	ModifyItems(collection string, selector interface{}, items ...interface{})
@@ -24,14 +24,16 @@ type Connector struct {
 }
 
 // InitDatabase init db with name
-func (conn *Connector) InitDatabase(database string) {
+func (conn *Connector) InitDatabase(database string) error {
 	session, err := mgo.Dial("localhost")
 	if err != nil {
-		panic(err)
+		log.Println(err)
+		return err
 	}
 	conn.dbSession = session.Copy()
 	conn.dbSession.SetMode(mgo.Monotonic, true)
 	conn.database = &database
+	return nil
 }
 
 // Shutdown close connection to db

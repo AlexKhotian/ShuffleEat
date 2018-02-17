@@ -14,10 +14,14 @@ type ServerRoutineImpl struct {
 }
 
 // ServerRoutineFactory creats intance of ServerRoutine
-func ServerRoutineFactory() IServerRoutine {
+func ServerRoutineFactory() (IServerRoutine, error) {
 	thisServer := new(ServerRoutineImpl)
-	thisServer.httpHandlerUtil = HTTPHandlerFactory()
-	return thisServer
+	var err error
+	thisServer.httpHandlerUtil, err = HTTPHandlerFactory()
+	if err != nil {
+		return nil, err
+	}
+	return thisServer, nil
 }
 
 // RunServer starts a web server

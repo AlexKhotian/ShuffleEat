@@ -1,8 +1,15 @@
 package main
 
-import "ShuffleEat/Model/ServerHandler"
+import (
+	"ShuffleEat/Model/ServerHandler"
+	"log"
+)
 
 func main() {
-	server := ServerHandler.ServerRoutineFactory()
+	server, err := ServerHandler.ServerRoutineFactory()
+	if err != nil {
+		log.Println(err)
+		return
+	}
 	server.RunServer()
 }

@@ -19,7 +19,9 @@ type CategorieSearchHandler struct {
 func FactoryCategorieSearchHandler() *CategorieSearchHandler {
 	this := new(CategorieSearchHandler)
 	dbConnector := new(DataBase.Connector)
-	dbConnector.InitDatabase(dbName)
+	if err := dbConnector.InitDatabase(dbName); err != nil {
+		return nil
+	}
 	this.dbConnector = dbConnector
 	return this
 }
