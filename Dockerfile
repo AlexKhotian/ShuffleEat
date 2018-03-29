@@ -1,11 +1,12 @@
 FROM alpine:latest
+FROM golang:1.9
 
-MAINTAINER AlexK
+ENV PATH ${GOPATH}/bin:$PATH
+WORKDIR ${GOPATH}/src/ShuffleEat
 
-WORKDIR "/opt"
+COPY . .
 
-ADD .docker_build/ShuffleEat /opt/bin/ShuffleEat
-ADD ./templates /opt/templates
-ADD ./static /opt/static
+RUN go build -o ShuffleEat MainServer.go
+EXPOSE 8080
 
-CMD ["/opt/bin/ShuffleEat"]
+CMD ["sh", "-c", "./ShuffleEat"]

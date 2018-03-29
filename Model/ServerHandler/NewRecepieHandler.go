@@ -16,7 +16,9 @@ type NewRecepieHandler struct {
 func FactoryNewRecepieHandler() *NewRecepieHandler {
 	this := new(NewRecepieHandler)
 	dbConnector := new(DataBase.Connector)
-	dbConnector.InitDatabase(dbName)
+	if err := dbConnector.InitDatabase(dbName); err != nil {
+		return nil
+	}
 	this.dbConnector = dbConnector
 	return this
 }

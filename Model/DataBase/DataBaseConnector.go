@@ -25,9 +25,9 @@ type Connector struct {
 
 // InitDatabase init db with name
 func (conn *Connector) InitDatabase(database string) error {
-	session, err := mgo.Dial("localhost")
+	session, err := mgo.Dial("shufflemongo:27017")
 	if err != nil {
-		log.Println(err)
+		log.Println("InitDatabase failed with error:", err)
 		return err
 	}
 	conn.dbSession = session.Copy()

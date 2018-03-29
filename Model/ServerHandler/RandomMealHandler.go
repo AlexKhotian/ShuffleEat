@@ -22,7 +22,9 @@ type RandomMealHandler struct {
 func FactoryRandomMealHandler() *RandomMealHandler {
 	this := new(RandomMealHandler)
 	dbConnector := new(DataBase.Connector)
-	dbConnector.InitDatabase(dbName)
+	if err := dbConnector.InitDatabase(dbName); err != nil {
+		return nil
+	}
 	this.dbConnector = dbConnector
 	return this
 }
